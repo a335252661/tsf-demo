@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  error:
+    include-exception: true
+spring:
+  application:
+    name: sc-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#          lower-case-service-id: false
+      httpclient:
+        connectTimeout: 10
+        responseTimeout: 20s
+#      routes:
+#        - id: provider-demo #payment_route    #路由的ID，没有固定规则但要求唯一，建议配合服务名
+##          uri: localhost:18081          #匹配后提供服务的路由地址
+#          uri: lb://provider-demo #匹配后提供服务的路由地址
+#          predicates:
+##            - Path=/v1/**         # 断言，路径相匹配的进行路由
+#            - Path=/echo/**         # 断言，路径相匹配的进行路由
+#    consul:
+#      host: 127.0.0.1
+#      port: 8500
+#      enabled: true
+#      scheme: HTTP
+
+logging:
+  file: /var/logs/${spring.application.name}/${spring.application.name}.log
+  level:
+    root: INFO
+    com.tencent.tsf: INFO

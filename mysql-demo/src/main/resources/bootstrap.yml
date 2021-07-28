@@ -1,0 +1,48 @@
+server:
+  port: 18086
+spring:
+  sleuth:
+    jdbc:
+      enabled: true
+  application:
+    name: mysql-demo
+  datasource:
+#    url: jdbc:dm://127.0.0.1:5236/DMHR?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+#    username: SYSDBA
+#    password: SYSDBA
+#    driver-class-name: dm.jdbc.driver.DmDriver
+
+
+#    mysql数据库
+#     driverClassName: com.mysql.jdbc.Driver
+#     url: jdbc:mysql://127.0.0.1:3306/tsf_test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#     username: root
+#     password: root
+
+    #    oracle数据库
+     driver-class-name: oracle.jdbc.driver.OracleDriver
+     url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+     username: system
+     password: Acld7758258
+
+
+
+#    测试DBCP连接池时启用
+#    type: org.apache.commons.dbcp2.BasicDataSource
+#    dbcp2:
+#      max-wait-millis: 10000
+#      min-idle: 5
+#      initial-size: 5
+#    测试Tomcat连接池时启用
+#    type: org.apache.tomcat.jdbc.pool.DataSource
+#    tomcat:
+#      max-active: 200
+#      max-wait: 10000
+#      test-on-borrow: true
+#    测试Druid连接池时启用
+#    type: com.alibaba.druid.pool.DruidDataSource
+#  druid:
+#    initialSize: 3
+#    minIdle: 3
+#    maxActive: 10
+#    maxWait: 10000

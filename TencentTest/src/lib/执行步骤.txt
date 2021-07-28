@@ -1,0 +1,3 @@
+//这是一个创建命名空间的调用接口的demo
+//注意修改对应的  SECRET_ID  SECRET_KEY   ip地址
+java -jar TencentTest-1.0-SNAPSHOT.jar 0aY868cI03HGed9d3aFfa3Q2QBa752G9 25642579HbX10AbXP46K25a621D0Vb87 10.10.30.160 ljwtest

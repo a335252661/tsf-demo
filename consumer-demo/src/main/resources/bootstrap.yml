@@ -1,0 +1,54 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: consumer-demo
+
+feign:
+  tsf:
+    enabled: true
+
+#本地测试时打开 cld-test-0513
+#tsf_namespace_id: namespace-opy5b9y4
+
+#方便本地自测调试
+tsf:
+  circuit-breaker:
+    rules:
+      - targetServiceName: provider-demo
+        isolationLevel: SERVICE
+#        targetNamespaceId: "default_namespace"
+        targetNamespaceId: "namespace-opy5b9y4"
+        strategyList:
+          - slidingWindowSize: 10
+            minimumNumberOfCalls: 10
+            failureRateThreshold: 40
+            waitDurationInOpenState: 5
+            maxEjectionPercent: 51
+            slowCallDurationThreshold: 800
+            slowCallRateThreshold: 50
+            apiList:
+              - method: GET
+                path: "/echo/{param}"
+              - method: GET
+                path: "/echo2/{str}"
+
+ribbon:
+  MaxAutoRetries: 0 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试
+  # 同一个微服务其他实例的最大重试次数，不包括第一次调用的实例。默认值为1
+  MaxAutoRetriesNextServer: 0
+  # 是否所有操作（GET、POST等）都允许重试。默认值为false
+  OkToRetryOnAllOperations: false
+  ConnectTimeout: 50000  #请求连接的超时时间
+  ReadTimeout: 60000
+
+
+provider-demo:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+    # ConnectTimeout: 500 #请求连接超时时间
+    # ReadTimeout: 1000 #请求处理的超时时间
+    # OkToRetryOnAllOperations: true #对所有请求都进行重试
+    # MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+    # MaxAutoRetries: 1 #对当前实例的重试次数
